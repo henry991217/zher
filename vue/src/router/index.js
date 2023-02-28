@@ -19,7 +19,7 @@ export default new VueRouter(
 			component:()=>import('../components/Login')
 		},
 		{
-			path:'/zh168168',
+			path:'/u239fhaAJAiK9sajsfha3U4OEWjp7KRSa',
 			component:()=>import('../components/backend/Home')
 		}
 	]

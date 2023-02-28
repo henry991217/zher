@@ -21,6 +21,10 @@
 </template>
 
 <script>
+
+
+  import request from "@/utils/request";
+
   export default {
     name: 'Login',
     data() {
@@ -46,24 +50,33 @@
 		{
 			this.$refs.formName.resetFields();
 		},
-      login(formName) {
+      login(userForm) {
         let that = this
 
-        this.$refs[formName].validate((valid) => {
+        this.$refs[userForm].validate((valid) => {
           if (valid) {
+           request.post("/user/login",this.userForm).then(
+               res=>
+               {
+                 if(res.code=='200')
+                 {
+                 this.$message.success("登录成功，即将跳转页面")
+                   console.log(res)
+                   sessionStorage.setItem("adminlogin",JSON.stringify(res.data))
+                 this.$router.replace("/u239fhaAJAiK9sajsfha3U4OEWjp7KRSa")//u239fhaAJAiK9sajsfha3U4OEWjp7KRSa
 
-            that.$store.dispatch('login', that.userForm).then(() => {
-                that.$router.go(-1)
-            }).catch((error) => {
-              if (error !== 'error') {
-                that.$message({message: error, type: 'error', showClose: true});
-              }
-            })
-          } else {
-            return false;
-          }
-        });
+               }
+                 else{
+                   console.log(res)
+                   this.$message.error("登陆失败，请检查用户名或密码是否输入正确")
+                 }
+               }
+           )
+
       }
+
+    })
+  }
     }
   }
 </script>

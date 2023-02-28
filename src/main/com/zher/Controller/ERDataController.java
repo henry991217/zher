@@ -35,7 +35,6 @@ public class ERDataController {
     //    更新
     @PutMapping
     public Result<?> update(@RequestBody ERData data) {
-
         ERDataService.update();
         return Result.OK();
     }

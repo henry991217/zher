@@ -265,7 +265,7 @@ export default {
 
     },
     exit(){
-      this.$router.push("/")
+      this.$router.replace("/")
     }
 
 
